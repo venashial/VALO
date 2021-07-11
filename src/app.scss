@@ -1,0 +1,69 @@
+@font-face {
+	font-family: 'Verlag Black';
+	src: url('/fonts/Verlag Black.woff2') format('woff2'),
+		url('/fonts/Verlag Black.otf') format('otf');
+}
+
+@font-face {
+	font-family: 'Chronicle Text';
+	src: url('/fonts/Chronicle Text.woff2') format('woff2'),
+		url('/fonts/Chronicle Text.otf') format('otf');
+}
+
+:root {
+	--font-body: 'Chronicle Text', Cambria, Georgia, serif;
+	--font-header: 'Verlag Black', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+		Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+	--font-mono: monospace;
+  --bg-color: black;
+	--text-color: #444444;
+}
+
+body {
+	min-height: 100vh;
+  font-size: 16px;
+	margin: 0;
+	font-family: var(--font-body);
+	background-color: var(--bg-color);
+}
+
+#svelte {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-header);
+}
+
+p {
+	line-height: 1.5;
+}
+
+h1 {
+	font-size: 2rem;
+	margin: 0 0 1em 0;
+	text-align: center;
+}
+
+input,
+button {
+	font-size: inherit;
+	font-family: inherit;
+}
+
+button:focus:not(:focus-visible) {
+	outline: none;
+}
+
+@media (min-width: 720px) {
+	h1 {
+		font-size: 2.4rem;
+	}
+}
