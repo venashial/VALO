@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@sveltejs/adapter-vercel': ^1.0.0-next.24
   '@sveltejs/kit': next
   eslint: ^7.22.0
   eslint-config-prettier: ^8.1.0
@@ -12,6 +13,7 @@ specifiers:
   svelte-preprocess: ^4.7.3
 
 devDependencies:
+  '@sveltejs/adapter-vercel': 1.0.0-next.24
   '@sveltejs/kit': 1.0.0-next.124_svelte@3.38.3
   eslint: 7.30.0
   eslint-config-prettier: 8.3.0_eslint@7.30.0
@@ -84,6 +86,12 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.0
+    dev: true
+
+  /@sveltejs/adapter-vercel/1.0.0-next.24:
+    resolution: {integrity: sha512-fTJptAA+UPF6HloAeRgfRNR85i2EDCaGN4XS028aXp9qwZ8X7Dhh9mFxRV4hko5USzj3j/HsH672Mp8OsAu12A==}
+    dependencies:
+      esbuild: 0.12.15
     dev: true
 
   /@sveltejs/kit/1.0.0-next.124_svelte@3.38.3:
@@ -900,8 +908,8 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /rollup/2.53.0:
-    resolution: {integrity: sha512-spgrY78Toh+m0+zaOoeaayJKuzFuWy6o1PdFIBMVwRcuxT0xCOX9A5rChyKe+2ruL4lePKWUMImS4mMW1QAkmQ==}
+  /rollup/2.53.1:
+    resolution: {integrity: sha512-yiTCvcYXZEulNWNlEONOQVlhXA/hgxjelFSjNcrwAAIfYx/xqjSHwqg/cCaWOyFRKr+IQBaXwt723m8tCaIUiw==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
@@ -1122,7 +1130,7 @@ packages:
       esbuild: 0.12.15
       postcss: 8.3.5
       resolve: 1.20.0
-      rollup: 2.53.0
+      rollup: 2.53.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
