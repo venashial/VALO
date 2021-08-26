@@ -3,18 +3,14 @@
 </script>
 
 <script>
+  import Parallax from "$lib/Parallax.svelte";
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>vena.sh</title>
 </svelte:head>
 
-<h1>Under Construction</h1>
-<ul>
-	<li><a href="https://venashial.design/">Bio</a></li>
-	<li><a href="https://venashial.games/">Games</a></li>
-	<li><a href="https://github.com/venashial/vena.sh/">Page Source</a></li>
-</ul>
+<Parallax />
 
 <style lang="scss">
 </style>
