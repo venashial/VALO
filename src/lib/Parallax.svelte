@@ -8,9 +8,9 @@
 	import Treeline2 from './layers/Treeline2.svelte';
 	import Treeline3 from './layers/Treeline3.svelte';
 	import Birds from './layers/Birds.svelte';
-	import Mountains1 from './layers/mountains1.svelte';
-	import Mountains2 from './layers/mountains2.svelte';
-	import Mountains3 from './layers/mountains3.svelte';
+	import Mountains1 from './layers/Mountains1.svelte';
+	import Mountains2 from './layers/Mountains2.svelte';
+	import Mountains3 from './layers/Mountains3.svelte';
 	import Sun from './layers/Sun.svelte';
 
 	let parallax;
