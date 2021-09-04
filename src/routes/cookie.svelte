@@ -1,22 +1,12 @@
 <script>
   import { onMount } from 'svelte'
-  import Cookies from 'js-cookie'
-
-  let cookie;
-
-  onMount(() => {
-    cookie = Cookies.get('authorization')
-  })
-
-  function updateCookie() {
-    Cookies.set('authorization', cookie, { sameSite: 'strict', expires: 3000 })
-  }
+  import { authorization } from '$lib/stores/auth.js'
 </script>
 
 <div class="huge">🍪</div>
 <div class="form">
 	<p>Change your authorization cookie:</p>
-	<input type="text" placeholder="Snickerdoodle" bind:value={cookie} on:input={updateCookie} />
+	<input type="text" placeholder="Snickerdoodle" bind:value={$authorization} />
   <slot></slot>
 </div>
 

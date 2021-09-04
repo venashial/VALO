@@ -3,7 +3,7 @@
 </script>
 
 <script>
-  import Parallax from "$lib/Parallax.svelte";
+  import Parallax from "$lib/components/Parallax.svelte";
 </script>
 
 <svelte:head>

@@ -1,4 +1,4 @@
-# vena.sh
+# Valo
 
 Vercel deploy: [vena-sh.vercel.app](https://vena-sh.vercel.app)
 

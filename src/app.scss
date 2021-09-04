@@ -98,3 +98,12 @@ a {
 .huge {
 	font-size: 9rem;
 }
+
+.btn {
+  padding: 0.7rem 2rem;
+  border-radius: 0.2rem;
+  background-color: hsl(0, 0%, 30%);
+  &:hover {
+    background-color: hsl(0, 0%, 50%);
+  }
+}
