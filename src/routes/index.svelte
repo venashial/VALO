@@ -4,6 +4,7 @@
 
 <script>
   import Parallax from "$lib/components/Parallax.svelte";
+  import '$lib/favicon.js';
 </script>
 
 <svelte:head>

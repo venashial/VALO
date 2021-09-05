@@ -1,22 +1,38 @@
+<script context="module">
+  export const load = async ({ page }) => ({
+    props: {
+      key: page.path,
+    },
+  })
+</script>
+
 <script>
-	import { onMount } from 'svelte';
 	import Button from '$lib/components/Button.svelte';
+  import PageTransition from "$lib/components/PageTransition.svelte"
+  export let key
 </script>
 
 <div class="background" />
 
 <div class="wrapper">
-	<slot />
-
-	<nav>
-		<Button href="/admin/manage">Manage</Button>
-		<Button href="/admin/create" color="blue">Create</Button>
-		<Button href="/admin/settings">Settings</Button>
+  <nav>
+		<Button href="/admin/manage" in_nav={true}>Manage</Button>
+		<Button href="/admin/create" in_nav={true}>Create</Button>
+		<Button href="/admin" in_nav={true}>Home</Button>
 	</nav>
 
+  <div class="content">
+    <PageTransition refresh={key}>
+      <slot />
+    </PageTransition>
+  </div>
 </div>
 
 <style lang="scss">
+	:global(body) {
+		background-color: hsl(0, 0%, 20%);
+	}
+
 	.background {
 		position: absolute;
 		top: 0;
@@ -31,27 +47,57 @@
 			rgba(255, 255, 255, 0) 100%
 		);
 		background-color: hsl(0, 0%, 20%);
-		background-position: top 50px right 50px;
-		background-size: 100px 100px;
-		background-image: linear-gradient(to right, hsl(0, 0%, 30%) 4px, transparent 4px),
-			linear-gradient(to bottom, hsl(0, 0%, 30%) 4px, transparent 4px);
+		--bg-size: min(10vw, 100px);
+		--half-bg-size: calc(var(--bg-size) / 2);
+		background-position: top var(--half-bg-size) right var(--half-bg-size);
+		background-size: var(--bg-size) var(--bg-size);
+		--line-width: min(0.6vw, 4px);
+		background-image: linear-gradient(
+				to right,
+				hsl(0, 0%, 30%) var(--line-width),
+				transparent var(--line-width)
+			),
+			linear-gradient(to bottom, hsl(0, 0%, 30%) var(--line-width), transparent var(--line-width));
 	}
 
 	.wrapper {
-		display: grid;
-		grid-template-rows: 1fr auto;
-		max-width: 800px;
+		display: flex;
+		flex-direction: column-reverse;
+    align-items: center;
 		width: 100%;
-		padding: 4rem 0;
+		padding: 5rem;
 		flex-grow: 1;
 
+		color: white;
 		font-family: sans-serif;
+
+    .content {
+      height: 100%;
+      max-height: 70vh;
+      margin-bottom: auto;
+      width: 100%;
+    }
 
 		nav {
 			display: flex;
-			align-items: center;
 			justify-content: center;
-			gap: 2rem;
+			align-items: flex-end;
+
+      > :global(a) {
+        &:not(:last-child):not(:first-child) {
+          border-radius: 0;
+        }
+
+        &:first-child {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+
+        &:last-child {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
 		}
 	}
 </style>

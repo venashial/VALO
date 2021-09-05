@@ -40,7 +40,7 @@ body {
 	margin: 0;
 	font-family: var(--font-body);
 	background-color: var(--bg-color);
-  color: var(--text-color);
+	color: var(--text-color);
 }
 
 #svelte {
@@ -100,10 +100,55 @@ a {
 }
 
 .btn {
-  padding: 0.7rem 2rem;
-  border-radius: 0.2rem;
-  background-color: hsl(0, 0%, 30%);
-  &:hover {
-    background-color: hsl(0, 0%, 50%);
+	padding: 0.7rem 2rem;
+	border-radius: 0.2rem;
+	background-color: hsl(0, 0%, 30%);
+	&:hover {
+		background-color: hsl(0, 0%, 50%);
+	}
+}
+
+input,
+select,
+button {
+	padding: 0.2rem 0.6rem;
+	margin: 0 0 0.25rem 0;
+
+	border: 0.15rem solid hsl(0, 0%, 70%);
+	border-radius: 0.4rem;
+
+	background-color: transparent;
+
+	color: var(--color-text);
+
+	align-self: flex-start;
+
+	&:focus {
+		box-shadow: 0 0 0 0.2rem hsla(224, 100%, 66%, 0.5);
+		outline: none;
+	}
+}
+
+select {
+	background: transparent
+		url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='hsla(0,0%,95%)'><polygon points='0,0 100,0 50,50'/></svg>")
+		no-repeat;
+	background-size: 12px;
+	background-position: calc(100% - 10px) 70%;
+	background-repeat: no-repeat;
+
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+
+	padding-right: 1.8rem;
+
+  option {
+    background-color: hsla(0, 0%, 1%, 0);
   }
+}
+
+input::placeholder, textarea::placeholder {
+  opacity: initial;
+  color: rgb(185, 185, 185)
 }

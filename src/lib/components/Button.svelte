@@ -1,34 +1,56 @@
 <script>
-  export let href = ''
-  export let color = ''
+	import { page } from '$app/stores';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
+	export let href = '';
+	export let in_nav = false;
+
+	$: active = $page.path === href;
 </script>
 
 {#if href != ''}
-    <a href="{href}" class={color}><slot /></a>
+	<a {href} class="rounded" class:active class:in_nav><slot /></a>
 {:else}
-  <button class={color}>
-    <slot />
-  </button>
+	<button
+		class="rounded"
+		class:active
+		on:click={() => {
+			dispatch('click');
+		}}
+	>
+		<slot />
+	</button>
 {/if}
 
 <style lang="scss">
-  button, a {
-    display: flex;
-    align-items: center;
+	button,
+	a {
+		display: flex;
+		align-items: center;
 
-    padding: 0.5rem 1.5rem;
+		padding: 0.5rem 1rem 0.4rem 1rem;
 
-    background-color: hsl(0, 0%, 40%);
-    border: none;
-    text-decoration: none;
-    color: hsl(0, 0%, 100%);
-    
-    &.blue {
-      background-color: hsl(220, 50%, 40%);
-    }
+		background-color: hsl(0, 0%, 40%);
+		border: none;
+		text-decoration: none;
+		color: hsl(0, 0%, 100%);
 
-    &:hover {
-      background-color: hsl(0, 0%, 60%);
-    }
-  }
+		&.active {
+			background-color: hsl(220, 50%, 40%);
+		}
+
+		&:not(.active) {
+			&:hover {
+				background-color: hsl(0, 0%, 60%);
+			}
+		}
+
+		&:nth-child(2).in_nav {
+			--border: 0.15rem solid hsl(0, 0%, 50%);
+			border-left: var(--border);
+			border-right: var(--border);
+		}
+	}
 </style>
