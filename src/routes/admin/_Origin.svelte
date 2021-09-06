@@ -6,7 +6,9 @@
 
 	export let id = '';
 
-  export let origin = {}
+  export const origin = {}
+
+  export const buttons = []
 
 	let buttons =
 		method === 'edit'
@@ -63,16 +65,6 @@
 			}
 		}
 	];
-
-	async function send({ method, url, data }) {
-		await fetch('/api/' + url, {
-			method,
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(data)
-		});
-	}
 </script>
 
 <svelte:head>
@@ -121,6 +113,10 @@
 					<Input placeholder="Description" />
 				</div>
 			{/each}
+      <Button>
+        Add another destination
+      </Button>
+      <div class="spacer" />
 		</div>
 	</div>
 
@@ -154,6 +150,10 @@
 				rgba(0, 0, 0, 1) 80%,
 				rgba(0, 0, 0, 0) 100%
 			);
+
+      > .spacer {
+        margin-bottom: 4rem;
+      }
 		}
 
 		.destination {
@@ -165,10 +165,6 @@
 			background-color: hsla(0, 0%, 40%, 0.5);
 
 			margin-bottom: 1rem;
-
-			&:last-child {
-				margin-bottom: 3rem;
-			}
 		}
 
 		.buttons {

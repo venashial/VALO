@@ -12,33 +12,35 @@
   export let key
 </script>
 
-<div class="background" />
-
 <div class="wrapper">
+  <div class="background" />
+
   <nav>
 		<Button href="/admin/manage" in_nav={true}>Manage</Button>
 		<Button href="/admin/create" in_nav={true}>Create</Button>
 		<Button href="/admin" in_nav={true}>Home</Button>
 	</nav>
-
   <div class="content">
     <PageTransition refresh={key}>
-      <slot />
-    </PageTransition>
+
+    <slot />
+  </PageTransition>
   </div>
+
+
 </div>
 
 <style lang="scss">
 	:global(body) {
-		background-color: hsl(0, 0%, 20%);
+		background-color: hsl(0, 0%, 13%);
 	}
 
 	.background {
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
-		height: 100%;
+		width: 100vw;
+		height: 100vh;
 		z-index: -1;
 		mask-image: radial-gradient(
 			circle,
@@ -46,7 +48,6 @@
 			rgba(199, 199, 207, 0) 73%,
 			rgba(255, 255, 255, 0) 100%
 		);
-		background-color: hsl(0, 0%, 20%);
 		--bg-size: min(10vw, 100px);
 		--half-bg-size: calc(var(--bg-size) / 2);
 		background-position: top var(--half-bg-size) right var(--half-bg-size);
@@ -54,10 +55,10 @@
 		--line-width: min(0.6vw, 4px);
 		background-image: linear-gradient(
 				to right,
-				hsl(0, 0%, 30%) var(--line-width),
+				hsl(0, 0%, 17%) var(--line-width),
 				transparent var(--line-width)
 			),
-			linear-gradient(to bottom, hsl(0, 0%, 30%) var(--line-width), transparent var(--line-width));
+			linear-gradient(to bottom, hsl(0, 0%, 17%) var(--line-width), transparent var(--line-width));
 	}
 
 	.wrapper {
