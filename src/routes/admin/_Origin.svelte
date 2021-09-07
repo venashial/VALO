@@ -1,37 +1,12 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+
 	import Button from '$lib/components/Button.svelte';
 	import Input from '$lib/components/Input.svelte';
-
-	export let method;
-
-	export let id = '';
 
   export const origin = {}
 
   export const buttons = []
-
-	let buttons =
-		method === 'edit'
-			? [
-					{
-						label: 'Save',
-						action: () => {
-							send({
-								url: `origin/${id}`
-							});
-						}
-					},
-					{
-						label: 'Delete',
-						action: function () {}
-					}
-			  ]
-			: [
-					{
-						label: 'Create',
-						action: function () {}
-					}
-			  ];
 
 	let destinations = [
 		{
@@ -122,7 +97,7 @@
 
 	<div class="buttons">
 		{#each buttons as button}
-			<Button on:click={button.action}>{button.label}</Button>
+			<Button on:click={}>{button}</Button>
 		{/each}
 	</div>
 </div>
