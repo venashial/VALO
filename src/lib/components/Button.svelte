@@ -11,10 +11,10 @@
 </script>
 
 {#if href != ''}
-	<a {href} class="rounded" class:active class:in_nav><slot /></a>
+	<a {href} class="rounded capitalize" class:active class:in_nav><slot /></a>
 {:else}
 	<button
-		class="rounded"
+		class="rounded capitalize"
 		class:active
 		on:click={() => {
 			dispatch('click');

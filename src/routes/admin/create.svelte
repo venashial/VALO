@@ -1,26 +1,37 @@
 <script>
-  import Origin from './_Origin.svelte';
+	import Origin from './_Origin.svelte';
 
-  let origin = {
-			slug: 'example-slug',
-			display_as: 'redirect',
-			destinations: [
-				{
-					type: 'url',
-					data: {
-						url: 'https://www.google.com'
-					},
-					meta: {
-						title: 'Google',
-						description: 'Search the web'
-					}
+	import { send } from '$lib/api';
+	import { goto } from '$app/navigation';
+
+	let origin = {
+		slug: '',
+		display_as: 'redirect',
+		destinations: [
+			{
+				type: 'url',
+				data: {
+					url: ''
+				},
+				meta: {
+					title: '',
+					description: ''
 				}
-			],
-			meta: {
-				title: 'Search engines',
-				description: 'Search engines that I like to use'
-			},
+			}
+		],
+		meta: {
+			title: '',
+			description: ''
 		}
+	};
+
+	async function create() {
+		const response = await send({ url: 'create', method: 'POST', data: origin });
+
+		if (response.ok) {
+			goto('/admin/manage');
+		}
+	}
 </script>
 
-<Origin bind:origin buttons={['create']}  />
+<Origin bind:origin buttons={['create']} on:create={create} />

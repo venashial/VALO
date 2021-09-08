@@ -1,45 +1,29 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher } from 'svelte';
+	const dispacher = createEventDispatcher();
 
 	import Button from '$lib/components/Button.svelte';
 	import Input from '$lib/components/Input.svelte';
 
-  export const origin = {}
+	export let origin;
 
-  export const buttons = []
+	export let buttons;
 
-	let destinations = [
-		{
-			type: 'url',
-			data: {
-				url: 'https://www.google.com'
-			},
-			meta: {
-				title: 'Google',
-				description: 'Search the web'
+	function addDestination() {
+		origin.destinations = [
+			...origin.destinations,
+			{
+				type: 'url',
+				data: {
+					url: ''
+				},
+				meta: {
+					title: 'Google',
+					description: 'Search the web'
+				}
 			}
-		},
-		{
-			type: 'url',
-			data: {
-				url: 'https://www.google.com'
-			},
-			meta: {
-				title: 'Google',
-				description: 'Search the web'
-			}
-		},
-		{
-			type: 'url',
-			data: {
-				url: 'https://www.google.com'
-			},
-			meta: {
-				title: 'Google',
-				description: 'Search the web'
-			}
-		}
-	];
+		];
+	}
 </script>
 
 <svelte:head>
@@ -48,9 +32,9 @@
 
 <div class="wrapper">
 	<div class="flex flex-col p-2 gap-2">
-		<Input name="Title" />
-		<Input name="Description" />
-		<Input name="Slug" placeholder="example-slug" />
+		<Input name="Title" bind:value={origin.meta.title} />
+		<Input name="Description" bind:value={origin.meta.description} />
+		<Input name="Slug" placeholder="example-slug" bind:value={origin.slug} />
 		<Input
 			name="Display as"
 			type="select"
@@ -61,43 +45,56 @@
 				{ name: 'Document', value: 'pdf' },
 				{ name: 'Download', value: 'download' }
 			]}
+			bind:value={origin.display_as}
 		/>
 	</div>
 
 	<div class="flex flex-col p-2 gap-4 overflow-y-auto">
 		<span>Destinations</span>
-		<div class="flex flex-col overflow-y-auto destinations">
-			{#each destinations as destination}
+		<div class="flex flex-col overflow-y-scroll destinations">
+			{#each origin.destinations as destination, index}
 				<div class="destination rounded gap-2">
-					<Input
-						placeholder="Type"
-						type="select"
-						options={[
-							{ name: 'Link', value: 'url' },
-							{ name: 'File', value: 'file' }
-						]}
-						bind:value={destination.type}
-						required
-					/>
+					<div class="flex justify-between">
+						<Input
+							placeholder="Type"
+							type="select"
+							options={[
+								{ name: 'Link', value: 'url' },
+								{ name: 'File', value: 'file' }
+							]}
+							bind:value={destination.type}
+							required
+						/>
+						{#if origin.destinations.length > 1}
+							<Button
+								on:click={() => {
+									origin.destinations.splice(index, 1);
+									origin.destinations = origin.destinations;
+								}}>✕</Button
+							>
+						{/if}
+					</div>
 					{#if destination.type === 'url'}
 						<Input placeholder="URL" bind:value={destination.data.url} />
 					{:else}
 						<Input placeholder="File" bind:value={destination.data.file} />
 					{/if}
-					<Input placeholder="Title" />
-					<Input placeholder="Description" />
+					<Input placeholder="Title" bind:value={destination.meta.title} />
+					<Input placeholder="Description" bind:value={destination.meta.description} />
 				</div>
 			{/each}
-      <Button>
-        Add another destination
-      </Button>
-      <div class="spacer" />
+			<Button on:click={addDestination}>Add another destination</Button>
+			<div class="spacer" />
 		</div>
 	</div>
 
 	<div class="buttons">
 		{#each buttons as button}
-			<Button on:click={}>{button}</Button>
+			<Button
+				on:click={() => {
+					dispacher(button);
+				}}>{button}</Button
+			>
 		{/each}
 	</div>
 </div>
@@ -126,9 +123,9 @@
 				rgba(0, 0, 0, 0) 100%
 			);
 
-      > .spacer {
-        margin-bottom: 4rem;
-      }
+			> .spacer {
+				margin-bottom: 4rem;
+			}
 		}
 
 		.destination {

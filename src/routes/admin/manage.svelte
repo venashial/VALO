@@ -1,60 +1,30 @@
+<script context="module">
+  import { send } from '$lib/api'
+
+	/**
+	 * @type {import('@sveltejs/kit').Load}
+	 */
+	export async function load({ page, fetch, session, context }) {
+		try {
+			const origins = (await send({ url: 'origins' }, fetch)).json;
+
+      console.log(origins);
+
+			return {
+				props: {
+					origins
+				}
+			};
+		} catch (error) {
+      throw error
+    }
+	}
+</script>
+
 <script>
 	import Button from '$lib/components/Button.svelte';
 
-	let origins = [
-		{
-			id: '123123',
-			slug: 'example-slug',
-			display_as: 'redirect',
-			visits: 0,
-			destinations: [
-				{
-					type: 'url',
-					data: {
-						url: 'https://www.google.com'
-					},
-					meta: {
-						title: 'Google',
-						description: 'Search the web'
-					}
-				}
-			],
-			meta: {
-				title: 'Search engines',
-				description: 'Search engines that I like to use'
-			},
-			timestamps: {
-				updated: '2020-01-01T00:00:00.000Z',
-				created: '2020-01-01T00:00:00.000Z'
-			}
-		},
-		{
-			id: '234234',
-			slug: 'example-slug',
-			display_as: 'redirect',
-			visits: 0,
-			destinations: [
-				{
-					type: 'url',
-					data: {
-						url: 'https://www.google.com'
-					},
-					meta: {
-						title: 'Google',
-						description: 'Search the web'
-					}
-				}
-			],
-			meta: {
-				title: 'Search engines',
-				description: 'Search engines that I like to use'
-			},
-			timestamps: {
-				updated: '2020-01-01T00:00:00.000Z',
-				created: '2020-01-01T00:00:00.000Z'
-			}
-		}
-	];
+  export let origins;
 
 	function formatDate(date) {
 		return new Date(date).toLocaleDateString();
@@ -76,7 +46,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each origins as origin (origin.id)}
+			{#each origins as origin}
 				<tr class="p-2">
 					<td>{origin.id}</td>
 					<td>{origin.slug}</td>
