@@ -1,6 +1,12 @@
 # VALO
 
+## Set up
 
+VALO isn't easy to set up, but it can be done.
+
+1. Deploy `worker/index.js` to Cloudflare
+2. Visit [the admin panel](https://valo.vercel.app/)
+3. 
 
 ## Developing
 

@@ -11,5 +11,3 @@ node_modules
 
 #working tree
 oldtree
-
-/worker/wrangler.toml
