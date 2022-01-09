@@ -1,22 +1,24 @@
-# Valo
+# VALO
 
-Vercel deploy: [vena-sh.vercel.app](https://vena-sh.vercel.app)
 
-## Status (`e429dda`)
-- [x] Link portal as home page (SvelteKit)
-  - [ ] Mobile support
-- [x] Link shortening (MongoDB)
-  - [x] Add links through UI
-  - [ ] Wayback machine for dead links
-- [ ] File uploading (Amazon S3)
-- [ ] File previewing
-  - [ ] PDFs
-  - [ ] Images
 
 ## Developing
 
-Once you've created a project and installed dependencies with `pnpm install` start a development server:
+### Worker
+
+To generate using [wrangler](https://github.com/cloudflare/wrangler)
+
+```
+wrangler generate projectname https://github.com/cloudflare/worker-template
+```
+
+### SvelteKit
+
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash
-pnpm dev
+npm run dev
+
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
 ```

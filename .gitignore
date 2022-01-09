@@ -1,9 +1,15 @@
 .DS_Store
 node_modules
+/build
 /.svelte-kit
 /package
-
+.env
+.env.*
+!.env.example
 .vercel
-.vercel_build_output
+.output
 
-/data
+#working tree
+oldtree
+
+/worker/wrangler.toml

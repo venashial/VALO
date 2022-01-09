@@ -1,0 +1,9 @@
+name = "valo"
+type = "javascript"
+compatibility_date = "2022-01-06"
+
+workers_dev = true
+route = ""
+
+account_id = ""
+zone_id = ""
