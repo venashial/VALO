@@ -1,0 +1,22 @@
+# Test worker routes with `wrangler dev` & a compatible IDE
+
+### Expect 404
+GET http://127.0.0.1:8787/404
+
+### Expect unauthorized
+GET http://127.0.0.1:8787/
+
+### Expect list of slugs
+GET http://127.0.0.1:8787/
+x-accessKeyId: id
+x-secretAccessKey: secret
+
+### Expect new link
+POST http://127.0.0.1:8787/test
+x-accessKeyId: id
+x-secretAccessKey: secret
+
+https://venashial.design
+
+### Expect redirect
+GET http://127.0.0.1:8787/test
