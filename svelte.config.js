@@ -1,21 +1,20 @@
+import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
-import vercel from '@sveltejs/adapter-vercel';
-import svg from '@poppanator/sveltekit-svg';
+import {optimizeCss, optimizeImports} from "carbon-preprocess-svelte";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: {
-		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte',
-		adapter: vercel(),
-    vite: {
-      plugins: [svg()]
-    }
-	},
+    preprocess: [preprocess(), optimizeImports()],
 
-	preprocess: [preprocess({
-        "postcss": true
-    })]
+    kit: {
+        adapter: adapter(),
+        target: '#svelte',
+        vite: {
+            plugins: [
+                process.env.NODE_ENV === "production" && optimizeCss()
+            ],
+        },
+    }
 };
 
 export default config;
