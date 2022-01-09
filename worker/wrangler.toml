@@ -3,6 +3,7 @@ type = "javascript"
 compatibility_date = "2022-01-06"
 
 route = "https://vena.sh/*"
+workers_dev = true
 
 account_id = "2f026ab243d136993620f21b9485d1e8"
 zone_id = "bd9fee159607a93905aa0cf850d3ecb9"
